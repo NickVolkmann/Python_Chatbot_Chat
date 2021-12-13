@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
+
 <head>
-  <title>A Basic HTML5 Template</title>
+  <title>Kundensupport</title>
+  <!--Link to CSS -->
+  <link href="../static/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/style.css" rel="stylesheet">
 </head>
 
-<body>
-  <form method="post">
-      <center><font color="white">You: 
-              <input type="text" name="user_input" 
-              placeholder="Start a conversation" size="91">
-              </font></center>
-        <br>
+<body class="text-center">
+  <form class="form-signin" action="{{url_for('chat')}}" method="POST">
+    <h1 class="h2 mb-3 font-weight-normal">Kundensupport</h1><br><br>
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus><br>
+    <button class="btn btn-lg btn-primary btn-block" value="submit">Starte den Chat</button>
   </form>
-  <center>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-<form method="post">
-    <center><font color="white">Chatbot 
-            <input type="text" name="dialog_box" size="91"
-            value="{{ bot_response }}">
-            </font></center>
-      <br>
-</form> 
-
 </body>
+
 </html>
