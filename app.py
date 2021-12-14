@@ -25,7 +25,10 @@ def chat():
         #Store the data in session
         session['username'] = username
         session['room'] = room
-        return render_template('chat.html', session = session)
+        if session.get('username') == "Nick":
+            return render_template('chatcsa.html', session = session)
+        else:    
+            return render_template('chat.html', session = session)
     else:
         if session.get('username') is not None:
             return render_template('chat.html', session = session)
@@ -45,18 +48,13 @@ def join(message):
 
 @socketio.on('text', namespace='/chat')
 def text(message):
-    print(message['msg'])
-    chatbot(message['msg'])
     room = "username"
+    #print(message['msg'])
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
+    if session.get('username') != "Nick":
+        emit('mess', {'msg': "Chatbot" + ' : ' + chatbot(message['msg'])}, room=room)
 
-@socketio.on('text', namespace='/chat')
-def text(message):
-    print(message['msg'])
-    chatbot(message['msg'])
-    room = "username"
-    emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
-    emit('mess', {'msg': "Chatbot" + ' : ' + chatbot(message['msg'])}, room=room)
+
 
 @socketio.on('left', namespace='/chat')
 def left(message):

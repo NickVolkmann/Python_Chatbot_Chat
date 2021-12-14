@@ -23,6 +23,10 @@
                     $('#chat').val($('#chat').val() + data.msg + '\n');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
+                socket.on('mess', function(data) {
+                    $('#ola').val($('#ola').val() + data.msg + '\n');
+                    $('#ola').scrollTop($('#ola')[0].scrollHeight);
+                });
                 $('#send').click(function(e) {
                         text = $('#text').val();
                         $('#text').val('');
@@ -46,6 +50,7 @@
       <textarea id="chat" cols="70" rows="10" placeholder="No messages yet. Start one..."></textarea><br /><br />
       <form method="post"> <input type="text" id="text" size="60" name="user_input" placeholder="Enter your message here" /></form>
       <button type="button" id="send" class="btn btn-success">SEND</button><br /><br />
+      <textarea id="ola" cols="70" rows="10" placeholder="No messages yet. Start one..."></textarea><br /><br />
       <center><button type="button" class="btn btn-danger" onclick=leave_room()>Leave this Chat</button></center>
     </div>
   </body>
