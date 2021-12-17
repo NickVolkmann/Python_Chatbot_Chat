@@ -15,22 +15,41 @@
                 socket.on('connect', function() {
                     socket.emit('join', {});
                 });
-                socket.on('status', function(data) {
-                    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
-                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                socket.on('ola', function(data) {
+                    $("#chat").append('<li>' + data.msg + '</li>')
+                    $("#chatbot_output").show()
+                    $("#chatbot_output span").text(data.msg);
+                    console.log($("#chatbot_output span").text())
+                });
+                socket.on('emot', function(data) {
+                    $("#chatbot_emo_output").show()
+                    $("#chatbot_emo_output span").text(data.msg);
+                    console.log($("#chatbot_emo_output span").text())
                 });
                 socket.on('message', function(data) {
-                    $('#chat').val($('#chat').val() + data.msg + '\n');
-                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
-                });
-                socket.on('mess', function(data) {
-                    $('#ola').val($('#ola').val() + data.msg + '\n');
-                    $('#ola').scrollTop($('#ola')[0].scrollHeight);
+                   /*$('#chat').val($('#chat').val() + data.msg + '\n');
+                    */
+                    $("#chate").append('<li>' + data.msg + '</li>')
+                    $('#chate').scrollTop($('#chate')[0].scrollHeight);
                 });
                 $('#send').click(function(e) {
-                        text = $('#text').val();
+                    text = $('#text').val();
                         $('#text').val('');
                         socket.emit('text', {msg: text});
+                });
+                $('#chatbot_output').click(function(e) {
+                    text = $("#chatbot_output span").text();
+                        $("#chatbot_output span").text('')
+                        $("#chatbot_output").hide()
+                        $("#chatbot_emo_output").hide()
+                        socket.emit('fck', {msg: text});
+                });
+                $('#chatbot_emo_output').click(function(e) {
+                    text = $("#chatbot_emo_output span").text();
+                        $("#chatbot_emo_output span").text('')
+                        $("#chatbot_emo_output").hide()
+                        $("#chatbot_output").hide()
+                        socket.emit('fck', {msg: text});
                 });
             });
             function leave_room() {
@@ -44,13 +63,17 @@
   </head>
 
   <body class="text-center">
-    
     <div class="chatwindow">
       <h2 >Customer Support</h2>
-      <textarea id="chat" cols="70" rows="10" placeholder="No messages yet. Start one..."></textarea><br /><br />
+      <div id="chate">
+          <div class="center-bottom">
+              <button id="chatbot_output"> <span></span> </button>
+               <button id="chatbot_emo_output"> <span></span> </button>
+          </div>
+      </div>
       <form method="post"> <input type="text" id="text" size="60" name="user_input" placeholder="Enter your message here" /></form>
       <button type="button" id="send" class="btn btn-success">SEND</button><br /><br />
-      <textarea id="ola" cols="70" rows="10" placeholder="No messages yet. Start one..."></textarea><br /><br />
+      </div>
       <center><button type="button" class="btn btn-danger" onclick=leave_room()>Leave this Chat</button></center>
     </div>
   </body>

@@ -23,6 +23,10 @@
                     $('#chat').val($('#chat').val() + data.msg + '\n');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
+                socket.on('messager', function(data) {
+                    $('#chat').val($('#chat').val() + data.msg + '\n');
+                    $('#chat').scrollTop($('#chat')[0].scrollHeight);
+                });
                 $('#send').click(function(e) {
                         text = $('#text').val();
                         $('#text').val('');
@@ -40,7 +44,6 @@
   </head>
 
   <body class="text-center">
-    
     <div class="chatwindow">
       <h2 >Customer Support</h2>
       <textarea id="chat" cols="70" rows="10" placeholder="No messages yet. Start one..."></textarea><br /><br />

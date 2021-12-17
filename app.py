@@ -1,10 +1,9 @@
-from re import M
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-from chat import ree
-from flask_socketio import SocketIO, join_room, leave_room, emit
+from flask_socketio import SocketIO, send, join_room, leave_room, emit
+
+from Analytical_Chatbot.chat import ana_chat
+from Emotional_Chatbot.chat import emo_chat
 from flask_session import Session
-
-
 
 app = Flask(__name__)
 app.debug = True
@@ -35,8 +34,13 @@ def chat():
         else:
             return redirect(url_for('index'))
 
-def chatbot(message):
-    bot_response = ree(message)
+def ana_chatbot(message):
+    bot_response = ana_chat(message)
+    print(bot_response)
+    return bot_response
+
+def emo_chatbot(message):
+    bot_response = emo_chat(message)
     print(bot_response)
     return bot_response
 
@@ -49,12 +53,17 @@ def join(message):
 @socketio.on('text', namespace='/chat')
 def text(message):
     room = "username"
-    #print(message['msg'])
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
+    #send({session.get('username') + ' : ' + message['msg']}, broadcast=True)
     if session.get('username') != "Nick":
-        emit('mess', {'msg': "Chatbot" + ' : ' + chatbot(message['msg'])}, room=room)
+        if ana_chatbot(message['msg']) != "I do not understand...":
+            emit('ola', {'msg': ana_chatbot(message['msg'])}, room=room)
+            emit('emot', {'msg': emo_chatbot(message['msg'])}, room=room)
 
-
+@socketio.on('fck', namespace='/chat')
+def text(message):
+    room = "username"
+    emit('messager', {'msg': "Chatbot" + ' : ' + message['msg']}, room=room)
 
 @socketio.on('left', namespace='/chat')
 def left(message):
