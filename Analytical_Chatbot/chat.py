@@ -3,15 +3,15 @@ import json
 
 import torch
 
-from model import NeuralNet
-from nltk_utils import bag_of_words, tokenize
+from Analytical_Chatbot.model import NeuralNet
+from Analytical_Chatbot.nltk_utils import bag_of_words, tokenize
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r') as json_data:
+with open('C:\\Users\\nickv\\OneDrive\\Desktop\\Py_Chatbot3\\Analytical_Chatbot\\intents.json', 'r') as json_data:
     intents = json.load(json_data)
 
-FILE = "data.pth"
+FILE = "C:\\Users\\nickv\\OneDrive\\Desktop\\Py_Chatbot3\\Analytical_Chatbot\\data.pth"
 data = torch.load(FILE)
 
 input_size = data["input_size"]
@@ -27,7 +27,7 @@ model.eval()
 
 bot_name = "Sam"
 
-def ree(msg):
+def ana_chat(msg):
     sentence = tokenize(msg)
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
@@ -57,5 +57,5 @@ if __name__ == "__main__":
         if sentence == "quit":
             break
 
-        resp = ree(sentence)
+        resp = ana_chat(sentence)
         print(resp)

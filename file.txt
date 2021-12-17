@@ -45,3 +45,6 @@ def text(message):
     room = "username"
     emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
     emit('mess', {'msg': "Chatbot" + ' : ' + chatbot(message['msg'])}, room=room)
+
+
+<div id="chat" cols="70" rows="10" placeholder="No messages yet. Start one..."></div><br /><br />
