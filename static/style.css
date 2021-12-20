@@ -1,40 +1,75 @@
-.text-center{
-    margin: 0 auto;
-    width: 800px;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
 }
 
-.chatwindow {
-    background-color: aqua;
+body {
+    height: 100vh;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#chate {
-    -moz-appearance: textfield-multiline;
-    -webkit-appearance: textarea;
-    border: 1px solid gray;
-    font: medium -moz-fixed;
-    font: -webkit-small-control;
-    height: 150px;
+.container {
+    width:550px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.4);
+    background-color: dodgerblue;
+}
+
+.header h1 {
+    color: white;
+    padding: 15px;
+}
+
+.body {
+    flex: 1;
+    color: white;
+    background-color: rgba(0,0,0,0.7);
+    padding: 20px 30px;
     overflow: auto;
-    padding: 2px;
-    resize: both;
-    width: 530px;
-    margin-bottom: 20px;
-    background-color: antiquewhite;
-    position:relative;
 }
 
-.center-bottom{
-    position:absolute;
-      bottom:0;
-      left:0;
-      right:0;
-      text-align:center
+.message {
+    background-color: dodgerblue;
+    padding: 10px;
+    color: white;
+    width: fit-content;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
-#chatbot_output{
-    display: none;
+.csa_message {
+    margin-left: auto;
+    background-color: white;
+    color: black;
 }
 
-#chatbot_emo_output{
-    display: none;
+.footer form {
+    display: flex;
+}
+
+form input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+
+form button {
+    width: 100px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
 }

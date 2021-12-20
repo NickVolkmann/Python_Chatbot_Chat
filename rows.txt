@@ -2,3 +2,36 @@
 def handleMessage(msg):
     print('Message: ' + msg)
     send(msg, broadcast=True)
+
+<div class="center-bottom">
+              <button id="chatbot_output"> <span></span> </button>
+               <button id="chatbot_emo_output"> <span></span> </button>
+          </div>
+
+#chate {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid gray;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    resize: both;
+    margin-bottom: 20px;
+    background-color: antiquewhite;
+    position:relative;
+}
+
+.center-bottom{
+    position:absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      text-align:center
+}
+
+#chatbot_output{
+    display: none;
+}
+
+#chatbot_emo_output{
+    display: none;
+}

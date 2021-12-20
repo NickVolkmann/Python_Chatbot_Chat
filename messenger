@@ -1,0 +1,45 @@
+/*
+                    $("#csa").append('<p class="message csa_message">' + data.msg + '</p>')
+                    $('#csa').scrollTop($('#csa')[0].scrollHeight);
+
+                    var para = document.createElement('div');                       // Create a <p> node
+                    var t = document.createTextNode(data.msg);      // Create a text node
+                    para.appendChild(t);                                          // Append the text to <p>
+                    document.getElementById("csa").appendChild(para);
+
+                    var iDiv = document.createElement('div');
+                    iDiv.id = 'chate';
+                    iDiv.className = 'body';
+
+                    // Create the inner div before appending to the body
+                    var innerDiv = document.createElement('div');
+                    innerDiv.className = 'message csa_message';
+
+                    // The variable iDiv is still good... Just append to it.
+                    iDiv.appendChild(innerDiv);
+
+                    // Then append the whole thing onto the body
+                    document.getElementsByTagName('body')[0].appendChild(iDiv);
+                    */
+
+
+/*
+                    $('#user').append('<p style="background-color: dodgerblue;padding: 10px;color: white;width: ' +
+                        'fit-content;border-radius: 10px;margin-bottom: 15px;">  data.msg </p>')
+                    $('#chat').val($('#chat').val() + data.msg + '\n');
+                    $("#user").append('<p class="message ">' + data.msg + '</p>')
+                    $('#user').scrollTop($('#user')[0].scrollHeight);
+
+                    var divStr = '<div id="user" style="background-color: dodgerblue;padding: 10px;color: white;width: ' +
+                        'fit-content;border-radius: 10px;margin-bottom: 15px;">  data.msg </div>';
+                    document.getElementById('user')[0].innerHTML += divStr
+
+                    let element = document.createElement('div');
+                    element.style.cssText = 'background-color: dodgerblue;padding: 10px;color: white;width:fit-content;border-radius: 10px;margin-bottom: 15px;';
+                    node.appendChild(textnode);
+                    document.body.append(element);;
+                    var para = document.createElement("P");                       // Create a <p> node
+                    var t = document.createTextNode(data.msg);      // Create a text node
+                    para.appendChild(t);                                          // Append the text to <p>
+                    document.getElementById("user").appendChild(para);
+                    */
