@@ -50,6 +50,35 @@ body {
     color: black;
 }
 
+.chatbot_output_display {
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    height: 150px;
+    background-color: #FF8C00;
+    color: white;
+    display: none;
+    border-radius: 10px;
+    display: none;
+}
+
+.chatbot_output_display button {
+    font-size: 18px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.csa_agent {
+    height: 35px;
+}
+
+.chatbot_icon {
+    height: 45px;
+}
+
 .footer form {
     display: flex;
 }

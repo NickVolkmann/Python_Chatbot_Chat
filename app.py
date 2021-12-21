@@ -2,12 +2,26 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_session import Session
 
+from Analytical_Chatbot.chat import ana_chat
+from Emotional_Chatbot.chat import emo_chat
+
+
 app = Flask(__name__)
 app.debug = True
 app.config['SECRET_KEY'] = 'secret'
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
 socketio = SocketIO(app, manage_session=False)
+
+def ana_chatbot(message):
+    bot_response = ana_chat(message)
+    print(bot_response)
+    return bot_response
+
+def emo_chatbot(message):
+    bot_response = emo_chat(message)
+    print(bot_response)
+    return bot_response
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -42,9 +56,18 @@ def text(message):
     room = "username"
     if session.get('username') != "Nick":
         emit('message', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
+        if ana_chatbot(message['msg']) != "I do not understand...":
+            emit('analytical_chatbot', {'msg': ana_chatbot(message['msg'])}, room=room)
+            emit('emotional_chatbot', {'msg': emo_chatbot(message['msg'])}, room=room)
     else:
         emit('message_to_csa', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
         emit('messager', {'msg': session.get('username') + ' : ' + message['msg']}, room=room)
+
+@socketio.on('send_data_to_client', namespace='/chat')
+def text(message):
+    room = "username"
+    emit('message_to_csa', {'msg': "Nick" + ' : ' + message['msg']}, room=room)
+    emit('messager', {'msg': "Nick" + ' : ' + message['msg']}, room=room)
 
 @socketio.on('left', namespace='/chat')
 def left(message):
