@@ -37,7 +37,6 @@ body {
 
 .message {
     background-color: dodgerblue;
-    padding: 10px;
     color: white;
     width: fit-content;
     border-radius: 10px;
@@ -51,15 +50,12 @@ body {
 }
 
 .chatbot_output_display {
-    position: absolute;
+    margin-bottom: 15px;
     text-align: center;
-    width: 500px;
-    height: 150px;
     background-color: #FF8C00;
     color: white;
     display: none;
     border-radius: 10px;
-    display: none;
 }
 
 .chatbot_output_display button {

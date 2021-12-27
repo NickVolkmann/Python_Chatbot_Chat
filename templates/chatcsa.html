@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Penguin Coders Chat</title>
+    <title>Customer Support</title>
     <!--Link to CSS -->
     <link href="../static/bootstrap.min.css" rel="stylesheet" />
     <link href="../static/style.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
         <script type="text/javascript" charset="utf-8">
             var socket;
+            var html_template = '<div class="chatbot_output_display" id="zero" style="margin-bottom: 5px"><img src="https://cdn-icons.flaticon.com/png/512/2593/premium/2593635.png?token=exp=1640071299~hmac=a7dbb180c83569733fb322beccd0a6f9" align="left" class="chatbot_icon"><h2 style="margin-bottom: 5px">Chatbot</h2>Ich habe folgende zwei Antworten bereitgestellt.<br><button id="chatbot_output" class="test"><span></span></button><button id="chatbot_emo_output"><span></span></button><div class="chatbot_output_display_edit_button" id="zero"><button id="chatbot_output_edit"><span>Edit</span></button><button id="chatbot_emo_output_edit"><span>Edit</span></button></div></div>'
             $(document).ready(function(){
                 socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                 socket.on('connect', function() {
                     socket.emit('join', {});
                 });
+                socket.on('status_user_connected', function(data) {
+                    $('<p class="message" style="margin-top: 15px; padding: 10px;">' + data.msg + ' </p>').appendTo('#chate');
+                    $('#chate').scrollTop($('#chate')[0].scrollHeight);
+                });
+
+                 socket.on('status_csa_connected', function(data) {
+                    $('<p class="message csa_message" style="margin-top: 15px; padding: 10px;">' + data.msg + '</p>').appendTo('#chate');
+                    $('#chate').scrollTop($('#chate')[0].scrollHeight);
+                });
 
                 socket.on('analytical_chatbot', function(data) {
                     $("#zero").show()
                     $("#chatbot_output span").text(data.msg);
+                    console.log($("#chatbot_output span").text())
                 });
 
                 socket.on('emotional_chatbot', function(data) {
                     $("#chatbot_emo_output span").text(data.msg);
+                    console.log($("#chatbot_emo_output span").text())
                 });
 
                 socket.on('message', function(data) {
-                    $('<p class="message" style="margin-top: 15px"><img src="https://cdn-icons.flaticon.com/png/512/3194/premium/3194712.png?token=exp=1640071163~hmac=8abf48a756792c181a6fbbdc7c388224" class="csa_agent">' + data.msg + ' </p>').appendTo('#chate');
+                    $('<p class="message" style="margin-top: 15px; padding: 10px;"><img src="https://cdn-icons.flaticon.com/png/512/3194/premium/3194712.png?token=exp=1640071163~hmac=8abf48a756792c181a6fbbdc7c388224" class="csa_agent">' + data.msg + ' </p>').appendTo('#chate');
+                    $(html_template).appendTo('#chate')
                     $('#chate').scrollTop($('#chate')[0].scrollHeight);
                 });
 
                 socket.on('message_to_csa', function(data) {
+                    $('<p class="message csa_message" style="margin-top: 15px; padding: 10px;"><img src="https://cdn-icons.flaticon.com/png/512/870/premium/870175.png?token=exp=1640071129~hmac=cc7e9b0170c1ee4368a31fab5eebaf77" class="csa_agent">' + data.msg + '</p>').appendTo('#chate');
                     $('#chate').scrollTop($('#chate')[0].scrollHeight);
-                    $('<p class="message csa_message" style="margin-top: 15px"><img src="https://cdn-icons.flaticon.com/png/512/870/premium/870175.png?token=exp=1640071129~hmac=cc7e9b0170c1ee4368a31fab5eebaf77" class="csa_agent">' + data.msg + '</p>').appendTo('#chate');
                 });
 
                 $('#send').click(function(e) {
@@ -41,32 +54,31 @@
                         socket.emit('text', {msg: text});
                 });
 
-                $('#chatbot_output').click(function(e) {
+                $('#chate').on('click', '#chatbot_output', function(e) {
+                    console.log($("#chatbot_output span").text())
                     text = $("#chatbot_output span").text();
-                        $("#chatbot_output span").text('')
-                        $("#zero").hide()
+                        $("#zero").remove()
                         socket.emit('send_data_to_client', {msg: text});
                 });
 
-                $('#chatbot_emo_output').click(function(e) {
+                $('#chate').on('click', '#chatbot_emo_output span', function(e) {
+                    console.log($("#chatbot_emo_output span").text())
                     text = $("#chatbot_emo_output span").text();
-                        $("#chatbot_emo_output span").text('')
-                        $("#zero").hide()
+                        $("#zero").remove()
                         socket.emit('send_data_to_client', {msg: text});
                 });
 
-                $('#chatbot_output_edit').click(function(e) {
-                    text_change = $('#chatbot_output span').text();
-                    document.getElementById("text").value=text_change;
-                    $("#zero").hide()
-                });
-
-                $('#chatbot_emo_output_edit').click(function(e) {
+                $('#chate').on('click', '#chatbot_output_edit', function(e) {
                      text_change = $('#chatbot_emo_output span').text();
                      document.getElementById("text").value=text_change;
-                     $("#zero").hide()
+                     $("#zero").remove()
                 });
 
+                $('#chate').on('click', '#chatbot_emo_output_edit', function(e) {
+                     text_change = $('#chatbot_output span').text();
+                     document.getElementById("text").value=text_change;
+                     $("#zero").remove()
+                });
             });
             function leave_room() {
                 socket.emit('left', {}, function() {
@@ -84,20 +96,8 @@
           <h1>Customer Support</h1>
       </div>
       <div id="chate" class="body">
-          <div class="message csa_message" id="csa">Du bist jetzt verbunden.</div>
-          <div class="message" id="user">Ein Kunde ist dem Chat beigetreten.</div>
-          <div class="chatbot_output_display" id="zero" style="margin-bottom: 5px">
-              <img src="https://cdn-icons.flaticon.com/png/512/2593/premium/2593635.png?token=exp=1640071299~hmac=a7dbb180c83569733fb322beccd0a6f9" align="left" class="chatbot_icon">
-              <h2 style="margin-bottom: 5px">Chatbot</h2>
-              Ich habe folgende zwei Antworten bereitgestellt.<br>
-              <button id="chatbot_output"><span></span></button>
-              <button id="chatbot_emo_output"><span></span></button>
-
-              <div class="chatbot_output_display_edit_button" id="zero">
-              <button id="chatbot_output_edit"><span>Edit</span></button>
-              <button id="chatbot_emo_output_edit"><span>Edit</span></button>
-          </div>
-          </div>
+          <div class="message csa_message" id="csa"></div>
+          <div class="message" id="user"></div>
       </div>
       <div class="footer">
           <form method="post">

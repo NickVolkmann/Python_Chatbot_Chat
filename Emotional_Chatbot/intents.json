@@ -1,83 +1,75 @@
 {
   "intents": [
     {
-      "tag": "greeting",
+      "tag": "Kosten",
       "patterns": [
-        "Hi",
-        "Hey",
-        "How are you",
-        "Is anyone there?",
-        "Hello",
-        "Good day"
+        "Wie viel kostet ein Auto bei Ihnen?",
+        "Was kostet ein Fahrzeug bei Ihnen?",
+        "Wie teuer ist ein Auto?",
+        "kostet",
+        "teuer"
       ],
       "responses": [
-        "Hey :-)",
-        "Hello, thanks for visiting",
-        "Hi there, what can I do for you?",
-        "Hi there, how can I help?"
+        "Guten Tag, Fahrzeuge gibt es bei uns ab 30 Euro am Tag. Die ersten 30km sind frei, danach 1 Euro pro km. Das Auto ist vollgetankt zurueckzugeben."
       ]
     },
     {
-      "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye"],
+      "tag": "Verfügbar",
+      "patterns": [
+        "Ist bei Ihnen gerade ein Auto verfügbar?",
+        "Kann ich mir heute noch ein Auto mieten?",
+        "Ist noch ein Auto frei, welches ich mir ausleihen kann?",
+        "Haben Sie momentan einen Wagen verfügbar?",
+        "mieten",
+        "verfügbar",
+        "ausleihen"
+      ],
       "responses": [
-        "See you later, thanks for visiting",
-        "Have a nice day",
-        "Bye! Come back again soon."
+        "Hi, toll dass du dich bei uns meldest! Leider nein, tut mir leid. Alle Bezahlungen werden ueber unsere Website oder unsere App abgewickelt."
       ]
     },
     {
-      "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-      "responses": ["Happy to help!", "Any time!", "My pleasure"]
-    },
-    {
-      "tag": "items",
+      "tag": "Audi",
       "patterns": [
-        "Which items do you have?",
-        "What kinds of items are there?",
-        "What do you sell?"
+        "Wie teuer ist der Audi?"
       ],
       "responses": [
-        "We sell coffee and tea",
-        "We have coffee and tea"
+        "Den Audi A3 gibt es bei uns ab 150€ am Tag. Die ersten 30km sind frei, danach 1€ pro km. Allerdings muesstest du am Ende auch noch volltanken. Fuer den Audi A3 verlangen wir außerdem eine Kaution von 500€, da es unser teuerstes Fahrzeug ist."
       ]
     },
     {
-      "tag": "payments",
+      "tag": "Zahlen",
       "patterns": [
-        "Do you take credit cards?",
-        "Do you accept Mastercard?",
-        "Can I pay with Paypal?",
-        "Are you cash only?"
+        "Kann ich bei Ihnen vor Ort bezahlen?",
+        "Kann ich bei Ihnen auch vor Ort bezahlen?",
+        "Kann ich auch bar bezahlen?",
+        "Kann ich auch bar vor Ort bezahlen?"
       ],
       "responses": [
-        "We accept VISA, Mastercard and Paypal",
-        "We accept most major credit cards, and Paypal"
+        "Leider nein, tut mir leid. Alle Bezahlungen werden ueber unsere Website oder unsere App abgewickelt."
       ]
     },
     {
-      "tag": "delivery",
+      "tag": "Kaution",
       "patterns": [
-        "How long does delivery take?",
-        "How long does shipping take?",
-        "When do I get my delivery?"
+        "Nehmen Sie eine Kaution?",
+        "Wie hoch ist der Betrag für die Kaution?",
+        "Wie viel Kaution muss ich zahlen?",
+        "Wie viel kostet die Kaution?",
+        "Kaution"
       ],
       "responses": [
-        "Delivery takes 2-4 days",
-        "Shipping takes 2-4 days"
+      "Hi, toll dass du dich bei uns meldest! Das haengt vom Auto ab: Ab einem Preis von mehr als 100€ am Tag brauchen wir eine Kaution abhaengig vom Fahrzeugwert. Fuer alle anderen nicht."
       ]
     },
     {
-      "tag": "funny",
+      "tag": "Tanken",
       "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
+        "Auf der Website steht, dass die ersten 30km kostenlos sind. Warum muss ich dann trotzdem volltanken?",
+        "Wenn ich weniger als 30km gefahren bin, muss ich dann trotzdem volltanken?"
       ],
       "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
+       "Hi, toll dass du dich bei uns meldest! Du musst volltanken, damit der naechste Kunde auch wieder ein vollgetanktes Auto hat. Außerdem wuerden wir ja sonst Verlust machen! ;-)"
       ]
     }
   ]

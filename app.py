@@ -15,12 +15,10 @@ socketio = SocketIO(app, manage_session=False)
 
 def ana_chatbot(message):
     bot_response = ana_chat(message)
-    print(bot_response)
     return bot_response
 
 def emo_chatbot(message):
     bot_response = emo_chat(message)
-    print(bot_response)
     return bot_response
 
 @app.route('/', methods=['GET', 'POST'])
@@ -50,6 +48,10 @@ def join(message):
     room = "username"
     join_room(room)
     emit('status', {'msg':  session.get('username') + ' has entered the room.'}, room=room)
+    if session.get('username') == "Nick":
+        emit('status_csa_connected', {'msg': "You" + ' has entered the room.'}, room=room)
+    if session.get('username') != "Nick":
+        emit('status_user_connected', {'msg': session.get('username') + ' has entered the room.'}, room=room)
 
 @socketio.on('text', namespace='/chat')
 def text(message):
