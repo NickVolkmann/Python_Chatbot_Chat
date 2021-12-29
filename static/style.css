@@ -98,3 +98,14 @@ form button {
     color: white;
     cursor: pointer;
 }
+
+
+i {
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    font-size: 3rem;
+}
+
+i:hover{
+    color: #f50057;
+}
