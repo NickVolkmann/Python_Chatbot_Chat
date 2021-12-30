@@ -1,0 +1,10 @@
+30/12/2021 07:38:58=Nick: has entered the room.
+30/12/2021 07:38:58=Tony: has entered the room.
+30/12/2021 07:38:59=Tony : Hi
+30/12/2021 07:39:01=Nick : NickVolkmann@web.de
+30/12/2021 07:39:07=Tony has left the room.
+30/12/2021 07:39:23=Tony: has entered the room.
+30/12/2021 07:39:24=Tony : Hi
+30/12/2021 07:39:30=Nick : Kann ich vor Ort bezahlen?
+30/12/2021 07:39:33=Tony : Kann ich vor ort bezahlen?
+30/12/2021 07:39:35=Nick : Leider nein, tut mir leid. Alle Bezahlungen werden ueber unsere Website oder unsere App abgewickelt.
