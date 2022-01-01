@@ -73,12 +73,14 @@
                 $('#chate').on('click', '#chatbot_output_edit', function(e) {
                      text_change = $('#chatbot_emo_output span').text();
                      document.getElementById("text").value=text_change;
+                     socket.emit('clicked_chatbot_output_edit', {msg: text});
                      $("#zero").remove()
                 });
 
                 $('#chate').on('click', '#chatbot_emo_output_edit', function(e) {
                      text_change = $('#chatbot_output span').text();
                      document.getElementById("text").value=text_change;
+                     socket.emit('clicked_chatbot_output_edit', {msg: text});
                      $("#zero").remove()
                 });
             });
@@ -92,10 +94,15 @@
 
             function changeColor_chatbot_analytical_output(){
                 document.getElementById("btn_chatbot_analytical_output").style.color="red";
+                text = $("#chatbot_output span").text();
+                socket.emit('disliked_message', {msg: text});
             }
 
             function changeColor_chatbot_emo_output(){
                 document.getElementById("btn_chatbot_emo_output").style.color="red";
+                text = $("#chatbot_emo_output span").text();
+                socket.emit('disliked_message', {msg: text});
+
             }
 
         </script>

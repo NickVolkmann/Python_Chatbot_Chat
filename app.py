@@ -101,5 +101,15 @@ def left(message):
     loggerInformation.append(datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "=" + username + ' has left the room.')
     logger_function()
 
+@socketio.on('clicked_chatbot_output_edit', namespace='/chat')
+def clicked_chatbot_output_edit(message):
+    loggerInformation.append(datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "=" + "Nick" + ' hat folgenden Vorschlag bearbeitet: ' + message['msg'])
+    logger_function()
+
+@socketio.on('disliked_message', namespace='/chat')
+def clicked_chatbot_output_edit(message):
+    loggerInformation.append(datetime.now().strftime("%d/%m/%Y %H:%M:%S") + "=" + "Nick" + ' hat folgenden Vorschlag disliked: ' + message['msg'])
+    logger_function()
+
 if __name__ == '__main__':
     socketio.run(app)
